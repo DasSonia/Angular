@@ -13,7 +13,7 @@ export class AuthService {
   let body = JSON.stringify(credentials);
   let headers = new Headers({ 'Content-Type': 'application/json' });
   let options = new RequestOptions({ headers: headers });
-  return this.http.post('http://localhost:8080/auth-jwt/', body, options)
+  return this.http.post('http://localhost:8081/auth-jwt/', body, options)
                 .map(response=>{
                   let result = response.json();
       
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   logout(){
-
+    localStorage.removeItem('token');
   }
 
   iSloggedin(){
