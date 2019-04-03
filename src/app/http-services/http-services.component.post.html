@@ -1,0 +1,17 @@
+<!-- https://jsonplaceholder.typicode.com/ -->
+<!-- place HttpModule in app.module.ts imports 
+This will even handle dependancy injestion needed by the Http and All other required imports
+-->
+<!-- place http:Http in http-service constructor -->
+
+<input type="text" 
+(keyup.enter) = "createPost(title)" #title
+class="form-control">
+<ul class="list-group">
+  <li 
+  *ngFor="let post of posts"
+  class="list-group-item">
+{{post.id}}
+{{post.title}}
+</li>
+</ul>

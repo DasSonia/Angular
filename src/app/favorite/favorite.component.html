@@ -1,0 +1,11 @@
+<input type="text" [(ngModel)]="title">
+<br>
+{{title}}
+<br>
+<span
+class="glyphicon"
+[class.glyphicon-star]="isFavorite"
+[class.glyphicon-star-empty]="!isFavorite"
+(click)="onClick()"
+>
+</span>

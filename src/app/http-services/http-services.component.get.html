@@ -1,0 +1,13 @@
+<!-- https://jsonplaceholder.typicode.com/ -->
+<!-- place HttpModule in app.module.ts imports 
+This will even handle dependancy injestion needed by the Http and All other required imports
+-->
+<!-- place http:Http in http-service constructor -->
+
+<ul class="list-group">
+  <li 
+  *ngFor="let post of posts"
+  class="list-group-item">
+{{post.title}}
+</li>
+</ul>
