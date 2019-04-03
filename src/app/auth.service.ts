@@ -1,9 +1,11 @@
 import { Http,Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class AuthService {
+  currentUser: any; 
 
   constructor(private http:Http) { }
   login(credentials){
@@ -13,7 +15,13 @@ export class AuthService {
   let options = new RequestOptions({ headers: headers });
   return this.http.post('http://localhost:8080/auth-jwt/', body, options)
                 .map(response=>{
-                  console.log(response.json())
+                  let result = response.json();
+      
+                  if (result && result.token) {
+                    localStorage.setItem('token', result.token);                                        
+                    return true; 
+                  }
+                  else return false; 
                 })
   }
 
