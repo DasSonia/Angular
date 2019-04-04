@@ -1,3 +1,4 @@
+import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './auth.service';
 import { CoursesService } from './courses.service';
@@ -68,7 +69,16 @@ import { OrderService } from './order.service';
     PostService,
     AuthService,
     OrderService,
-    AuthGuard
+    AuthGuard,
+    AuthHttp,
+        provideAuth({
+            headerName: 'Authorization',
+            headerPrefix: 'bearer',
+            tokenName: 'token',
+            tokenGetter: (() => localStorage.getItem('token')),
+            globalHeaders: [{ 'Content-Type': 'application/json' }],
+            noJwtError: true
+        })
   ],
   bootstrap: [AppComponent]
 })
