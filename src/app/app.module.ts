@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './auth.service';
 import { CoursesService } from './courses.service';
 import { PostService } from './services/post.service';
@@ -6,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import { RouterModule } from '@angular/router'; // Router
+import { RouterModule, CanActivate } from '@angular/router'; // Router
 
 
 import { AppComponent } from './app.component';
@@ -49,7 +50,8 @@ import { OrderService } from './order.service';
       }, // Home
       {
         path:'admin', 
-        component:AdminComponent
+        component:AdminComponent,
+        canActivate:[AuthGuard]
       }, // Admin
       {
         path:'login', 
@@ -65,7 +67,8 @@ import { OrderService } from './order.service';
     CoursesService,
     PostService,
     AuthService,
-    OrderService
+    OrderService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
