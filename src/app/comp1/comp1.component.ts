@@ -10,7 +10,7 @@ import { NgRedux,select } from '@angular-redux/store';
   styleUrls: ['./comp1.component.css']
 })
 export class Comp1Component implements OnInit {
-  @select() counter;
+  @select('counter') count; // Name in store as parameter
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
