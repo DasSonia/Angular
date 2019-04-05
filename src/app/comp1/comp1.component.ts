@@ -1,7 +1,7 @@
 import { INCREMENT } from './../actions';
 import { IAppState } from './../store';
 import { Component, OnInit } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux,select } from '@angular-redux/store';
 
 
 @Component({
@@ -10,16 +10,8 @@ import { NgRedux } from '@angular-redux/store';
   styleUrls: ['./comp1.component.css']
 })
 export class Comp1Component implements OnInit {
-  counter = 0
-  constructor(private ngRedux: NgRedux<IAppState>) {
-    // We have to release the memory.
-    // We have to unsubscribe the ngRedux
-    var subscription = ngRedux.subscribe(()=>{
-      console.log(ngRedux.getState());
-      var store = ngRedux.getState();
-      this.counter = store.counter;
-    })
-   }
+  @select() counter;
+  constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
   }
