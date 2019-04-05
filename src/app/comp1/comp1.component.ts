@@ -10,7 +10,13 @@ import { NgRedux,select } from '@angular-redux/store';
   styleUrls: ['./comp1.component.css']
 })
 export class Comp1Component implements OnInit {
-  @select('counter') count; // Name in store as parameter
+  @select('counter') count; // Name in store as parameter as string
+  @select(['messaging','newMessages']) newMessages; // Name in store as parameter as array[]
+  // to access > messaging.newMessages
+  @select((s:IAppState)=>{  // Name in store as parameter as arrow => function
+    s.messaging.newMessages;
+  }) newMessagesCount;
+
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
