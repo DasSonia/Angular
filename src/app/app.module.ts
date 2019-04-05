@@ -10,7 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import { RouterModule, CanActivate } from '@angular/router'; // Router
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
-
+import { fromJS, Map} from 'immutable';
 
 import { AppComponent } from './app.component';
 import { CourseComponent } from './course/course.component';
@@ -91,7 +91,7 @@ import { IAppState, rootReducer, INITIAL_STATE } from './store';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(private ngRedux: NgRedux<IAppState>){
-    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  constructor(ngRedux: NgRedux< Map< string,any >>){
+    ngRedux.configureStore(rootReducer, fromJS(INITIAL_STATE));
   }
 }
