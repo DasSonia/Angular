@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import { RouterModule, CanActivate } from '@angular/router'; // Router
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 
 
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { NoaccessComponent } from './noaccess/noaccess.component';
 import { OrderService } from './order.service';
 import { Comp1Component } from './comp1/comp1.component';
 import { Comp2Component } from './comp2/comp2.component';
+import { IAppState, rootReducer, INITIAL_STATE } from './store';
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { Comp2Component } from './comp2/comp2.component';
   ],
   imports: [
     BrowserModule,
+    NgReduxModule,
     FormsModule,
     HttpModule,    
     RouterModule.forRoot([
@@ -74,6 +77,7 @@ import { Comp2Component } from './comp2/comp2.component';
     AuthService,
     OrderService,
     AuthGuard,
+    
     AuthHttp,
         provideAuth({
             headerName: 'Authorization',
@@ -86,4 +90,8 @@ import { Comp2Component } from './comp2/comp2.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(private ngRedux: NgRedux<IAppState>){
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+}
