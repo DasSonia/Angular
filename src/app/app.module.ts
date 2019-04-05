@@ -23,6 +23,8 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { NoaccessComponent } from './noaccess/noaccess.component';
 import { OrderService } from './order.service';
+import { Comp1Component } from './comp1/comp1.component';
+import { Comp2Component } from './comp2/comp2.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { OrderService } from './order.service';
     HomeComponent,
     AdminComponent,
     LoginComponent,
-    NoaccessComponent
+    NoaccessComponent,
+    Comp1Component,
+    Comp2Component
   ],
   imports: [
     BrowserModule,
